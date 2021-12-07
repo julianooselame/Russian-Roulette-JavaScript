@@ -135,19 +135,19 @@ function duelar(players) {
 
 let duelists = [
 	{
-		nome: 'Jailson',
+		nome: 'Billy the Kid',
 		vivo: true
 	},
 	{
-		nome: 'Guina',
+		nome: 'Wild Bill',
 		vivo: true
 	},
 	{
-		nome: 'Kid',
+		nome: 'Wyatt Earp',
 		vivo: true
 	},
 	{
-		nome: 'Kauan',
+		nome: 'Beto Carrero',
 		vivo: true
 	}
 ];
