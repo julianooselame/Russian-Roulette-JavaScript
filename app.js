@@ -1,14 +1,3 @@
-function menu() {
-	console.log('1 - Cadastrar');
-	console.log('2 - Listar');
-	console.log('3 - Duelar');
-	console.log('5 - Sair');
-
-	let opcao = parseInt(prompt('Digite uma opção!!'));
-
-	return opcao;
-}
-
 function createDuelist(nome) {
 	return {
 		nome: nome,
@@ -152,21 +141,20 @@ let duelists = [
 	}
 ];
 
-let op = 0;
+const cadas = document.getElementById('cadastrar');
 
-do {
-	op = menu();
-	switch (op) {
-		case 1:
-			cadastro();
-			break;
+cadas.addEventListener('click', function() {
+	cadastro();
+});
 
-		case 2:
-			listar();
-			break;
+const list = document.getElementById('listar');
 
-		case 3:
-			duelar();
-			break;
-	}
-} while (op !== 5);
+list.addEventListener('click', function() {
+	listar();
+});
+
+const duel = document.getElementById('duelar');
+
+duel.addEventListener('click', function() {
+	duelar();
+});
