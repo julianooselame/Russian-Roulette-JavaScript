@@ -122,6 +122,72 @@ function duelar(players) {
 	}
 }
 
+function clearList() {
+	const living = document.querySelector('#vivos');
+	living.textContent = 'VIVOS';
+
+	const dead = document.querySelector('#muertos');
+	dead.textContent = 'MORTOS';
+
+	const listTemp = [];
+	const listDead = [];
+	for (let i = 0; i < duelists.length; i++) {
+		if (duelists[i].vivo === true) {
+			listTemp.push(duelists[i].nome);
+		} else {
+			listDead.push(duelists[i].nome);
+		}
+	}
+
+	function createLista(name) {
+		let li = document.createElement('li');
+		li.textContent = name;
+		return li;
+	}
+	const listaPlayers = document.querySelector('.list');
+	for (let i = 0; i < listTemp.length; i++) {
+		listaPlayers.appendChild(createLista(listTemp[i]));
+	}
+
+	const listaDeadPeople = document.querySelector('.dead');
+	for (let i = 0; i < listDead.length; i++) {
+		listaDeadPeople.appendChild(createLista(listDead[i]));
+	}
+}
+
+function listAllPlayers() {
+	const living = document.querySelector('#vivos');
+	living.textContent = 'VIVOS';
+
+	const dead = document.querySelector('#muertos');
+	dead.textContent = 'MORTOS';
+
+	const listTemp = [];
+	const listDead = [];
+	for (let i = 0; i < duelists.length; i++) {
+		if (duelists[i].vivo === true) {
+			listTemp.push(duelists[i].nome);
+		} else {
+			listDead.push(duelists[i].nome);
+		}
+	}
+
+	function createLista(name) {
+		let li = document.createElement('li');
+		li.textContent = name;
+		return li;
+	}
+	const listaPlayers = document.querySelector('.list');
+	for (let i = 0; i < listTemp.length; i++) {
+		listaPlayers.appendChild(createLista(listTemp[i]));
+	}
+
+	const listaDeadPeople = document.querySelector('.dead');
+	for (let i = 0; i < listDead.length; i++) {
+		listaDeadPeople.appendChild(createLista(listDead[i]));
+	}
+}
+
 let duelists = [
 	{
 		nome: 'Billy the Kid',
@@ -129,7 +195,7 @@ let duelists = [
 	},
 	{
 		nome: 'Wild Bill',
-		vivo: true
+		vivo: false
 	},
 	{
 		nome: 'Wyatt Earp',
@@ -150,7 +216,7 @@ cadas.addEventListener('click', function() {
 const list = document.getElementById('listar');
 
 list.addEventListener('click', function() {
-	listar();
+	listAllPlayers();
 });
 
 const duel = document.getElementById('duelar');
@@ -158,3 +224,21 @@ const duel = document.getElementById('duelar');
 duel.addEventListener('click', function() {
 	duelar();
 });
+
+const colors = [ 'green', 'red', 'rgba(133,122,200)', '#f15025' ];
+
+const btn = document.getElementById('btn');
+const color = document.querySelector('.color');
+let temp = '';
+
+btn.addEventListener('click', function() {
+	for (let i = 0; i < colors.length; i++) {
+		temp += colors[i] + '\n';
+	}
+
+	color.textContent = temp;
+});
+
+function getRandomNumber() {
+	return Math.floor(Math.random() * colors.length);
+}
