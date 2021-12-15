@@ -5,6 +5,33 @@ function createDuelist(nome) {
 	};
 }
 
+function listAllPlayers() {
+	const btn = document.getElementById('listar');
+
+	let listinha = document.querySelector('.dinamic');
+	let listinha2 = document.querySelector('.deadpeople');
+
+	limpa();
+
+	const living = document.querySelector('#vivos');
+	living.textContent = 'VIVOS';
+
+	const dead = document.querySelector('#muertos');
+	dead.textContent = 'MORTOS';
+
+	for (let i = 0; i < duelists.length; i++) {
+		if (duelists[i].vivo === true) {
+			let elemento = document.createElement('li');
+			elemento.appendChild(document.createTextNode(duelists[i].nome));
+			listinha.appendChild(elemento);
+		} else if (duelists[i].vivo === false) {
+			let elemento2 = document.createElement('li');
+			elemento2.appendChild(document.createTextNode(duelists[i].nome));
+			listinha2.appendChild(elemento2);
+		}
+	}
+}
+
 function cadastro() {
 	let duelist = createDuelist(prompt('Digite o nome do duelista!!!!'));
 	duelists.push(duelist);
@@ -122,70 +149,11 @@ function duelar(players) {
 	}
 }
 
-function clearList() {
-	const living = document.querySelector('#vivos');
-	living.textContent = 'VIVOS';
-
-	const dead = document.querySelector('#muertos');
-	dead.textContent = 'MORTOS';
-
-	const listTemp = [];
-	const listDead = [];
-	for (let i = 0; i < duelists.length; i++) {
-		if (duelists[i].vivo === true) {
-			listTemp.push(duelists[i].nome);
-		} else {
-			listDead.push(duelists[i].nome);
-		}
-	}
-
-	function createLista(name) {
-		let li = document.createElement('li');
-		li.textContent = name;
-		return li;
-	}
-	const listaPlayers = document.querySelector('.list');
-	for (let i = 0; i < listTemp.length; i++) {
-		listaPlayers.appendChild(createLista(listTemp[i]));
-	}
-
-	const listaDeadPeople = document.querySelector('.dead');
-	for (let i = 0; i < listDead.length; i++) {
-		listaDeadPeople.appendChild(createLista(listDead[i]));
-	}
-}
-
-function listAllPlayers() {
-	const living = document.querySelector('#vivos');
-	living.textContent = 'VIVOS';
-
-	const dead = document.querySelector('#muertos');
-	dead.textContent = 'MORTOS';
-
-	const listTemp = [];
-	const listDead = [];
-	for (let i = 0; i < duelists.length; i++) {
-		if (duelists[i].vivo === true) {
-			listTemp.push(duelists[i].nome);
-		} else {
-			listDead.push(duelists[i].nome);
-		}
-	}
-
-	function createLista(name) {
-		let li = document.createElement('li');
-		li.textContent = name;
-		return li;
-	}
-	const listaPlayers = document.querySelector('.list');
-	for (let i = 0; i < listTemp.length; i++) {
-		listaPlayers.appendChild(createLista(listTemp[i]));
-	}
-
-	const listaDeadPeople = document.querySelector('.dead');
-	for (let i = 0; i < listDead.length; i++) {
-		listaDeadPeople.appendChild(createLista(listDead[i]));
-	}
+function limpa() {
+	const myNode = document.querySelector('.dinamic');
+	const mySecondNode = document.querySelector('.deadpeople');
+	myNode.innerHTML = '';
+	mySecondNode.innerHTML = '';
 }
 
 let duelists = [
@@ -202,7 +170,7 @@ let duelists = [
 		vivo: true
 	},
 	{
-		nome: 'Beto Carrero',
+		nome: 'Buffalo Bill',
 		vivo: true
 	}
 ];
@@ -224,21 +192,3 @@ const duel = document.getElementById('duelar');
 duel.addEventListener('click', function() {
 	duelar();
 });
-
-const colors = [ 'green', 'red', 'rgba(133,122,200)', '#f15025' ];
-
-const btn = document.getElementById('btn');
-const color = document.querySelector('.color');
-let temp = '';
-
-btn.addEventListener('click', function() {
-	for (let i = 0; i < colors.length; i++) {
-		temp += colors[i] + '\n';
-	}
-
-	color.textContent = temp;
-});
-
-function getRandomNumber() {
-	return Math.floor(Math.random() * colors.length);
-}
